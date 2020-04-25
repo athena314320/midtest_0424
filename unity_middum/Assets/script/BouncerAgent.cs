@@ -50,6 +50,7 @@ public class BouncerAgent : Agent
             vectorAction[2] * vectorAction[2]) / 3f);
 
         m_LookDir = new Vector3(x, y, z);
+
     }
 
     public override void OnEpisodeBegin()
@@ -58,15 +59,16 @@ public class BouncerAgent : Agent
             (1 - 2 * Random.value) * 5, 2, (1 - 2 * Random.value) * 5);
         m_Rb.velocity = default(Vector3);
         var environment = gameObject.transform.parent.gameObject;
-        var targets =
+        var target =
             environment.GetComponentsInChildren<BouncerTarget>();
-        foreach (var t in targets)
+        foreach (var t in target)
         {
             t.Respawn();
         }
         m_JumpLeft = m_NumberJumps;
 
         SetResetParameters();
+
     }
 
 
@@ -100,6 +102,7 @@ public class BouncerAgent : Agent
         {
             EndEpisode();
         }
+
     }
 
     public override float[] Heuristic()

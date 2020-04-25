@@ -4,11 +4,6 @@ using MLAgents;
 public class BouncerTarget : MonoBehaviour
 {
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        gameObject.transform.Rotate(new Vector3(1, 0, 0), 0.5f);
-    }
-
     void OnTriggerEnter(Collider collision)
     {
         var agent = collision.gameObject.GetComponent<Agent>();
@@ -17,6 +12,8 @@ public class BouncerTarget : MonoBehaviour
             agent.AddReward(1f);
             Respawn();
         }
+
+
     }
 
     public void Respawn()
@@ -27,4 +24,7 @@ public class BouncerTarget : MonoBehaviour
                 2f + Random.value * 5f,
                 (1 - 2 * Random.value) * 5f);
     }
+
+
+    
 }
